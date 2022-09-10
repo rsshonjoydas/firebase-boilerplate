@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  firebase-boilerplate-dev:
+    container_name: firebase-boilerplate-dev
+    restart: unless-stopped
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/app/
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env.local
+    command: yarn dev
+    networks:
+      - mydockernet
+
+networks:
+  mydockernet:
+    driver: bridge
